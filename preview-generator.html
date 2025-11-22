@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            margin: 0;
+            width: 1200px;
+            height: 630px;
+            background: linear-gradient(135deg, #ff9ed8, #ffb3e6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Arial', sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+        .content {
+            text-align: center;
+            color: white;
+            z-index: 2;
+        }
+        h1 {
+            font-size: 80px;
+            margin: 0;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+        }
+        h2 {
+            font-size: 50px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        .info {
+            font-size: 35px;
+            margin-top: 20px;
+        }
+        .heart {
+            font-size: 100px;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        .icon {
+            position: absolute;
+            opacity: 0.3;
+            color: rgba(255,255,255,0.4);
+        }
+    </style>
+</head>
+<body>
+    <!-- Biberón -->
+    <svg style="position: absolute; top: 80px; left: 150px; width: 80px; height: 80px; opacity: 0.25;" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+        <rect x="26" y="20" width="12" height="30" rx="2" fill="white"/>
+        <rect x="28" y="16" width="8" height="6" rx="2" fill="white"/>
+    </svg>
+    
+    <!-- Chupón -->
+    <svg style="position: absolute; top: 180px; right: 140px; width: 75px; height: 75px; opacity: 0.25;" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="32" cy="28" r="12" fill="white"/>
+        <ellipse cx="32" cy="45" rx="4" ry="8" fill="white"/>
+    </svg>
+    
+    <!-- Pañal -->
+    <svg style="position: absolute; bottom: 120px; left: 180px; width: 70px; height: 70px; opacity: 0.25;" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+        <rect x="16" y="24" width="32" height="24" rx="4" fill="white"/>
+        <path d="M20 32 Q32 28 44 32" stroke="rgba(255,255,255,0.5)" stroke-width="2" fill="none"/>
+    </svg>
+    
+    <!-- Sonajero -->
+    <svg style="position: absolute; bottom: 140px; right: 120px; width: 80px; height: 80px; opacity: 0.25;" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="32" cy="22" r="10" fill="white"/>
+        <circle cx="28" cy="20" r="2" fill="rgba(255,105,180,0.5)"/>
+        <circle cx="36" cy="20" r="2" fill="rgba(255,105,180,0.5)"/>
+        <circle cx="32" cy="24" r="2" fill="rgba(255,105,180,0.5)"/>
+        <rect x="30" y="32" width="4" height="16" rx="2" fill="white"/>
+        <rect x="26" y="46" width="12" height="6" rx="3" fill="white"/>
+    </svg>
+    
+    <div class="content">
+        <div class="heart">💗</div>
+        <h1>¡Es una niña!</h1>
+        <h2>Baby Shower de Antonella</h2>
+        <div class="info">
+            Kelvin & Cristel<br>
+            12 de Diciembre, 2025 • 7:30 PM
+        </div>
+    </div>
+</body>
+</html>
