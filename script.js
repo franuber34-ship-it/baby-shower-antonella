@@ -221,8 +221,8 @@ document.getElementById('rsvpForm').addEventListener('submit', function(e) {
     
     whatsappMessage += `\n━━━━━━━━━━━━━━━━━━━━━\n¡Confirmo mi asistencia!\n¡Nos vemos pronto!`;
     
-    // Número de WhatsApp (temporal para pruebas)
-    const phoneNumber = '51951361334';
+    // Número de WhatsApp de la mamá (Cristel)
+    const phoneNumber = '51980000493';
     
     // Crear URL de WhatsApp
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`;
