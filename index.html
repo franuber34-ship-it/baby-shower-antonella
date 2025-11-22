@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baby Shower - ¡Es una niña!</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Iconos flotantes en toda la página -->
+    <div class="page-floating-icons">
+        <!-- Chupón -->
+        <svg class="page-icon icon-1" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="28" r="12" fill="currentColor"/>
+            <ellipse cx="32" cy="45" rx="4" ry="8" fill="currentColor"/>
+        </svg>
+        
+        <!-- Biberón -->
+        <svg class="page-icon icon-2" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <rect x="26" y="20" width="12" height="30" rx="2" fill="currentColor"/>
+            <rect x="28" y="16" width="8" height="6" rx="2" fill="currentColor"/>
+        </svg>
+        
+        <!-- Sonajero -->
+        <svg class="page-icon icon-3" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="20" r="8" fill="currentColor"/>
+            <rect x="30" y="26" width="4" height="16" fill="currentColor"/>
+            <circle cx="32" cy="46" r="6" fill="currentColor"/>
+        </svg>
+        
+        <!-- Patito -->
+        <svg class="page-icon icon-4" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="32" cy="35" rx="14" ry="12" fill="currentColor"/>
+            <circle cx="32" cy="22" r="8" fill="currentColor"/>
+            <path d="M28 20 L24 18 L26 22" fill="currentColor"/>
+        </svg>
+        
+        <!-- Pañal -->
+        <svg class="page-icon icon-5" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 25 L44 25 L42 42 Q32 48 22 42 Z" fill="currentColor"/>
+        </svg>
+        
+        <!-- Body bebé -->
+        <svg class="page-icon icon-6" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24 20 L28 16 L36 16 L40 20 L40 42 L32 45 L24 42 Z" fill="currentColor"/>
+            <circle cx="28" cy="24" r="2" fill="white"/>
+        </svg>
+        
+        <!-- Huellitas -->
+        <svg class="page-icon icon-7" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="32" cy="38" rx="6" ry="8" fill="currentColor"/>
+            <circle cx="28" cy="28" r="2.5" fill="currentColor"/>
+            <circle cx="32" cy="26" r="2.5" fill="currentColor"/>
+            <circle cx="36" cy="28" r="2.5" fill="currentColor"/>
+        </svg>
+        
+        <!-- Cuna -->
+        <svg class="page-icon icon-8" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <rect x="20" y="28" width="24" height="12" rx="2" fill="currentColor"/>
+            <line x1="22" y1="26" x2="22" y2="40" stroke="currentColor" stroke-width="2"/>
+            <line x1="32" y1="26" x2="32" y2="40" stroke="currentColor" stroke-width="2"/>
+            <line x1="42" y1="26" x2="42" y2="40" stroke="currentColor" stroke-width="2"/>
+        </svg>
+        
+        <!-- Juguete apilable -->
+        <svg class="page-icon icon-9" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <path d="M32 16 L26 22 L38 22 Z" fill="currentColor"/>
+            <path d="M32 24 L24 32 L40 32 Z" fill="currentColor"/>
+            <path d="M32 34 L22 44 L42 44 Z" fill="currentColor"/>
+        </svg>
+        
+        <!-- Carriola -->
+        <svg class="page-icon icon-10" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 25 L38 25 L38 35 L20 38 Z" fill="currentColor"/>
+            <circle cx="24" cy="40" r="4" fill="currentColor"/>
+            <circle cx="36" cy="40" r="4" fill="currentColor"/>
+        </svg>
+        
+        <!-- Babero -->
+        <svg class="page-icon icon-11" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <path d="M32 18 Q28 20 26 24 L26 40 Q26 44 32 46 Q38 44 38 40 L38 24 Q36 20 32 18" fill="currentColor"/>
+            <circle cx="32" cy="30" r="3" fill="white"/>
+        </svg>
+        
+        <!-- Comida bebé -->
+        <svg class="page-icon icon-12" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <rect x="26" y="20" width="12" height="20" rx="2" fill="currentColor"/>
+            <rect x="30" y="16" width="4" height="6" rx="1" fill="currentColor"/>
+        </svg>
+        
+        <!-- Móvil de cuna -->
+        <svg class="page-icon icon-13" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <line x1="32" y1="16" x2="32" y2="24" stroke="currentColor" stroke-width="2"/>
+            <line x1="24" y1="24" x2="40" y2="24" stroke="currentColor" stroke-width="2"/>
+            <path d="M24 26 L24 30 L28 32 L24 34 L24 38" stroke="currentColor" stroke-width="1.5" fill="none"/>
+            <path d="M40 26 L40 30 L36 32 L40 34 L40 38" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        </svg>
+        
+        <!-- Calcetines -->
+        <svg class="page-icon icon-14" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <path d="M26 20 L26 32 Q26 38 32 40 Q34 38 34 34 L34 20 Z" fill="currentColor"/>
+        </svg>
+        
+        <!-- Corazón (se mantiene) -->
+        <svg class="page-icon icon-15" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="currentColor"/>
+        </svg>
+    </div>
+    
+    <div class="container">
+        <!-- Header -->
+        <header class="header" id="header">
+            <div class="header-content">
+                <svg class="header-icon" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+                <div class="header-text">
+                    <h1>¡Es una niña!</h1>
+                    <h2>Baby Shower</h2>
+                    <p class="event-info">
+                        <svg class="event-icon" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/>
+                        </svg>
+                        <span>12 Diciembre 2025</span>
+                        <span class="separator">•</span>
+                        <svg class="event-icon" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+                        </svg>
+                        <span>7:30 PM</span>
+                    </p>
+                    <p class="parents-names">Kelvin & Cristel • Antonella</p>
+                </div>
+                <svg class="header-icon" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+            </div>
+        </header>
+
+        <!-- Navigation Buttons -->
+        <nav class="nav-buttons">
+            <button class="nav-btn active" onclick="showSection('invitacion')">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+                Invitación
+            </button>
+            <button class="nav-btn" onclick="showSection('lista')">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 6H16V4C16 2.89 15.11 2 14 2H10C8.89 2 8 2.89 8 4V6H4C2.89 6 2.01 6.89 2.01 8L2 19C2 20.11 2.89 21 4 21H20C21.11 21 22 20.11 22 19V8C22 6.89 21.11 6 20 6ZM10 4H14V6H10V4Z"/>
+                </svg>
+                Lista de Regalos
+            </button>
+            <button class="nav-btn" onclick="showSection('ubicacion')">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22S19 14.25 19 9C19 5.13 15.87 2 12 2ZM12 11.5C10.62 11.5 9.5 10.38 9.5 9C9.5 7.62 10.62 6.5 12 6.5C13.38 6.5 14.5 7.62 14.5 9C14.5 10.38 13.38 11.5 12 11.5Z"/>
+                </svg>
+                Ubicación
+            </button>
+            <button class="nav-btn" onclick="showSection('confirmar')">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 4H4C2.9 4 2.01 4.9 2.01 6L2 18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4ZM20 8L12 13L4 8V6L12 11L20 6V8Z"/>
+                </svg>
+                Confirmar Asistencia
+            </button>
+        </nav>
+
+        <!-- Contador de asistentes minimalista -->
+        <div class="minimal-counter">
+            <span id="attendeeCount">0</span> personas confirmadas
+        </div>
+
+        <!-- Invitación Section -->
+        <section id="invitacion" class="section active">
+            <div class="invitation-message">
+                <svg class="invitation-icon" viewBox="0 0 24 24" fill="#ff69b4" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+                <h3>¡Estás Invitado!</h3>
+                <p class="invitation-text">
+                    Nos complace invitarte a celebrar la llegada de nuestra bebé. 
+                    Este momento especial será aún más mágico con tu presencia.
+                </p>
+                <p class="invitation-text">
+                    Únete a nosotros para compartir risas, juegos y buenos deseos mientras 
+                    preparamos la bienvenida a nuestra bebé. Tu compañía hará de este día 
+                    un recuerdo inolvidable.
+                </p>
+                <p class="invitation-text highlight">
+                    ¡Esperamos verte el 12 de diciembre para celebrar juntos este hermoso comienzo!
+                </p>
+            </div>
+        </section>
+
+        <!-- Lista de Regalos Section -->
+        <section id="lista" class="section">
+            <h3>Lista de Regalos</h3>
+            <p class="section-subtitle">Selecciona lo que deseas regalar</p>
+            <div class="gifts-grid">
+                <div class="gift-item" data-gift="Regalo sorpresa">
+                    <svg class="gift-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="18" y="28" width="28" height="20" rx="2" fill="#ff9ed8"/>
+                        <rect x="16" y="22" width="32" height="8" rx="2" fill="#ffb3e6"/>
+                        <path d="M32 22 L32 48" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+                        <path d="M16 26 L46 26" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+                        <circle cx="26" cy="18" r="4" fill="#ff69b4"/>
+                        <circle cx="38" cy="18" r="4" fill="#ff69b4"/>
+                        <path d="M26 18 Q32 14 32 22" stroke="#ff69b4" stroke-width="2" fill="none"/>
+                        <path d="M38 18 Q32 14 32 22" stroke="#ff69b4" stroke-width="2" fill="none"/>
+                    </svg>
+                    <div class="gift-item-content">
+                        <h4>Regalo sorpresa</h4>
+                        <span class="gift-counter" data-count="0"></span>
+                        <button class="select-btn" onclick="toggleGift(this)">Seleccionar</button>
+                    </div>
+                </div>
+                <div class="gift-item" data-gift="Pañales">
+                    <svg class="gift-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16" y="24" width="32" height="24" rx="4" fill="#ff9ed8"/>
+                        <path d="M20 32 Q32 28 44 32" stroke="#fff" stroke-width="2" fill="none"/>
+                    </svg>
+                    <div class="gift-item-content">
+                        <h4>Pañales</h4>
+                        <span class="gift-counter" data-count="0"></span>
+                        <button class="select-btn" onclick="toggleGift(this)">Seleccionar</button>
+                    </div>
+                </div>
+                <div class="gift-item" data-gift="Toallitas">
+                    <svg class="gift-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="20" y="22" width="24" height="20" rx="2" fill="#ff9ed8"/>
+                        <rect x="24" y="18" width="16" height="4" rx="1" fill="#ffb3e6"/>
+                        <line x1="26" y1="28" x2="38" y2="28" stroke="#fff" stroke-width="1.5"/>
+                        <line x1="26" y1="32" x2="38" y2="32" stroke="#fff" stroke-width="1.5"/>
+                        <line x1="26" y1="36" x2="38" y2="36" stroke="#fff" stroke-width="1.5"/>
+                    </svg>
+                    <div class="gift-item-content">
+                        <h4>Toallitas</h4>
+                        <span class="gift-counter" data-count="0"></span>
+                        <button class="select-btn" onclick="toggleGift(this)">Seleccionar</button>
+                    </div>
+                </div>
+                <div class="gift-item" data-gift="Pañalera">
+                    <svg class="gift-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 28 L44 28 L44 50 L20 50 Z" fill="#ff9ed8"/>
+                        <path d="M24 28 L24 20 L32 16 L40 20 L40 28" stroke="#ffb3e6" stroke-width="2" fill="none"/>
+                        <rect x="28" y="36" width="8" height="6" rx="1" fill="#fff"/>
+                    </svg>
+                    <div class="gift-item-content">
+                        <h4>Pañalera</h4>
+                        <span class="gift-counter" data-count="0"></span>
+                        <button class="select-btn" onclick="toggleGift(this)">Seleccionar</button>
+                    </div>
+                </div>
+                <div class="gift-item" data-gift="Cobijas">
+                    <svg class="gift-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16" y="20" width="32" height="28" rx="2" fill="#ff9ed8"/>
+                        <path d="M20 24 L44 24 L42 44 L22 44 Z" fill="#ffb3e6" opacity="0.6"/>
+                        <circle cx="26" cy="30" r="2" fill="#fff"/>
+                        <circle cx="32" cy="30" r="2" fill="#fff"/>
+                        <circle cx="38" cy="30" r="2" fill="#fff"/>
+                    </svg>
+                    <div class="gift-item-content">
+                        <h4>Cobijas</h4>
+                        <span class="gift-counter" data-count="0"></span>
+                        <button class="select-btn" onclick="toggleGift(this)">Seleccionar</button>
+                    </div>
+                </div>
+                <div class="gift-item" data-gift="Biberones">
+                    <svg class="gift-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="26" y="16" width="12" height="4" rx="2" fill="#ffb3e6"/>
+                        <path d="M28 20 L28 48 Q28 52 32 52 Q36 52 36 48 L36 20 Z" fill="#ff9ed8"/>
+                        <circle cx="32" cy="30" r="2" fill="#fff"/>
+                    </svg>
+                    <div class="gift-item-content">
+                        <h4>Biberones</h4>
+                        <span class="gift-counter" data-count="0"></span>
+                        <button class="select-btn" onclick="toggleGift(this)">Seleccionar</button>
+                    </div>
+                </div>
+                <div class="gift-item" data-gift="Toallas">
+                    <svg class="gift-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="18" y="20" width="28" height="32" rx="2" fill="#ff9ed8"/>
+                        <line x1="18" y1="28" x2="46" y2="28" stroke="#fff" stroke-width="2"/>
+                        <line x1="18" y1="36" x2="46" y2="36" stroke="#fff" stroke-width="2"/>
+                        <line x1="18" y1="44" x2="46" y2="44" stroke="#fff" stroke-width="2"/>
+                    </svg>
+                    <div class="gift-item-content">
+                        <h4>Toallas</h4>
+                        <span class="gift-counter" data-count="0"></span>
+                        <button class="select-btn" onclick="toggleGift(this)">Seleccionar</button>
+                    </div>
+                </div>
+                <div class="gift-item" data-gift="Chupones">
+                    <svg class="gift-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="32" cy="30" r="10" fill="#ff9ed8"/>
+                        <circle cx="32" cy="30" r="6" fill="#ffb3e6"/>
+                        <rect x="30" y="38" width="4" height="6" rx="2" fill="#ff9ed8"/>
+                    </svg>
+                    <div class="gift-item-content">
+                        <h4>Chupones</h4>
+                        <span class="gift-counter" data-count="0"></span>
+                        <button class="select-btn" onclick="toggleGift(this)">Seleccionar</button>
+                    </div>
+                </div>
+                <div class="gift-item" data-gift="Juguetes">
+                    <svg class="gift-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="32" cy="28" r="8" fill="#ff9ed8"/>
+                        <ellipse cx="32" cy="44" rx="10" ry="12" fill="#ff9ed8"/>
+                        <circle cx="28" cy="26" r="2" fill="#fff"/>
+                        <circle cx="36" cy="26" r="2" fill="#fff"/>
+                        <circle cx="24" cy="20" r="3" fill="#ffb3e6"/>
+                        <circle cx="40" cy="20" r="3" fill="#ffb3e6"/>
+                    </svg>
+                    <div class="gift-item-content">
+                        <h4>Juguetes</h4>
+                        <span class="gift-counter" data-count="0"></span>
+                        <button class="select-btn" onclick="toggleGift(this)">Seleccionar</button>
+                    </div>
+                </div>
+                <div class="gift-item" data-gift="Cuna">
+                    <svg class="gift-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16" y="28" width="32" height="16" rx="2" fill="#ff9ed8"/>
+                        <line x1="20" y1="24" x2="20" y2="44" stroke="#ffb3e6" stroke-width="2"/>
+                        <line x1="26" y1="24" x2="26" y2="44" stroke="#ffb3e6" stroke-width="2"/>
+                        <line x1="32" y1="24" x2="32" y2="44" stroke="#ffb3e6" stroke-width="2"/>
+                        <line x1="38" y1="24" x2="38" y2="44" stroke="#ffb3e6" stroke-width="2"/>
+                        <line x1="44" y1="24" x2="44" y2="44" stroke="#ffb3e6" stroke-width="2"/>
+                    </svg>
+                    <div class="gift-item-content">
+                        <h4>Cuna</h4>
+                        <span class="gift-counter" data-count="0"></span>
+                        <button class="select-btn" onclick="toggleGift(this)">Seleccionar</button>
+                    </div>
+                </div>
+                <div class="gift-item" data-gift="Crema para pañales">
+                    <svg class="gift-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="26" y="20" width="12" height="24" rx="3" fill="#ff9ed8"/>
+                        <rect x="28" y="16" width="8" height="6" rx="2" fill="#ffb3e6"/>
+                        <circle cx="32" cy="30" r="2" fill="#fff"/>
+                        <path d="M30 36 Q32 34 34 36" stroke="#fff" stroke-width="1.5" fill="none"/>
+                    </svg>
+                    <div class="gift-item-content">
+                        <h4>Crema para pañales</h4>
+                        <span class="gift-counter" data-count="0"></span>
+                        <button class="select-btn" onclick="toggleGift(this)">Seleccionar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ubicación Section -->
+        <section id="ubicacion" class="section">
+            <h3>Ubicación del Evento</h3>
+            <p class="section-subtitle">Te esperamos en:</p>
+            <div class="location-info">
+                <div class="address">
+                    <h4>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="#ff69b4" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle; margin-right: 5px;">
+                            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                        </svg>
+                        Dirección
+                    </h4>
+                    <p>Urbanización La Planicie</p>
+                    <p>Naranjal Mz "G" lote 7</p>
+                    <p>San Martín de Porres</p>
+                </div>
+                <div class="map-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1951.0!2d-77.09537506103516!3d-11.968032836914062!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTHCsDU4JzA0LjkiUyA3N8KwMDUnNDMuNCJX!5e0!3m2!1ses!2spe!4v1234567890"
+                        width="100%" 
+                        height="300" 
+                        style="border:0; border-radius: 15px;" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+                <button class="directions-btn" onclick="openWaze()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg" style="margin-right: 8px;">
+                        <path d="M21.71 11.29l-9-9c-.39-.39-1.02-.39-1.41 0l-9 9c-.39.39-.39 1.02 0 1.41l9 9c.39.39 1.02.39 1.41 0l9-9c.39-.38.39-1.01 0-1.41zM14 14.5V12h-4v3H8v-4c0-.55.45-1 1-1h5V7.5l3.5 3.5-3.5 3.5z"/>
+                    </svg>
+                    Abrir en Waze
+                </button>
+            </div>
+        </section>
+
+        <!-- Confirmar Asistencia Section -->
+        <section id="confirmar" class="section">
+            <h3>Confirmar Asistencia</h3>
+            <p class="section-subtitle">Por favor confirma tu asistencia</p>
+            <form id="rsvpForm" class="rsvp-form">
+                <div class="form-group">
+                    <label for="nombre">Nombre completo *</label>
+                    <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre">
+                </div>
+                
+                <div class="form-group">
+                    <label for="telefono">Teléfono *</label>
+                    <input type="tel" id="telefono" name="telefono" required placeholder="Tu teléfono">
+                </div>
+                
+                <div class="form-group">
+                    <label for="asistentes">¿Cuántas personas asistirán? *</label>
+                    <select id="asistentes" name="asistentes" required>
+                        <option value="">Selecciona...</option>
+                        <option value="1">1 persona</option>
+                        <option value="2">2 personas</option>
+                        <option value="3">3 personas</option>
+                        <option value="4">4 personas</option>
+                        <option value="5">5 o más personas</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="mensaje">Mensaje para los papás (opcional)</label>
+                    <textarea id="mensaje" name="mensaje" rows="4" placeholder="Escribe tus buenos deseos..."></textarea>
+                </div>
+                
+                <div id="selectedGifts" class="selected-gifts-display"></div>
+                
+                <button type="submit" class="submit-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle; margin-right: 8px;">
+                        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                    </svg>
+                    Confirmar mi asistencia
+                </button>
+            </form>
+            <div id="confirmationMessage" class="confirmation-message"></div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-decoration">
+                <svg width="25" height="25" viewBox="0 0 24 24" fill="#ff69b4" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 22c4.97 0 9-4.03 9-9-4.97 0-9 4.03-9 9zM5.6 10.25c0 1.38 1.12 2.5 2.5 2.5.53 0 1.01-.16 1.42-.44l-.02.19c0 1.38 1.12 2.5 2.5 2.5s2.5-1.12 2.5-2.5l-.02-.19c.4.28.89.44 1.42.44 1.38 0 2.5-1.12 2.5-2.5 0-1-.59-1.85-1.43-2.25.84-.4 1.43-1.25 1.43-2.25 0-1.38-1.12-2.5-2.5-2.5-.53 0-1.01.16-1.42.44l.02-.19C14.5 2.12 13.38 1 12 1S9.5 2.12 9.5 3.5l.02.19c-.4-.28-.89-.44-1.42-.44-1.38 0-2.5 1.12-2.5 2.5 0 1 .59 1.85 1.43 2.25-.84.4-1.43 1.25-1.43 2.25z"/>
+                </svg>
+                <svg width="35" height="35" viewBox="0 0 24 24" fill="#ff69b4" xmlns="http://www.w3.org/2000/svg" style="margin: 0 10px;">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+                <svg width="25" height="25" viewBox="0 0 24 24" fill="#ff69b4" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 22c4.97 0 9-4.03 9-9-4.97 0-9 4.03-9 9zM5.6 10.25c0 1.38 1.12 2.5 2.5 2.5.53 0 1.01-.16 1.42-.44l-.02.19c0 1.38 1.12 2.5 2.5 2.5s2.5-1.12 2.5-2.5l-.02-.19c.4.28.89.44 1.42.44 1.38 0 2.5-1.12 2.5-2.5 0-1-.59-1.85-1.43-2.25.84-.4 1.43-1.25 1.43-2.25 0-1.38-1.12-2.5-2.5-2.5-.53 0-1.01.16-1.42.44l.02-.19C14.5 2.12 13.38 1 12 1S9.5 2.12 9.5 3.5l.02.19c-.4-.28-.89-.44-1.42-.44-1.38 0-2.5 1.12-2.5 2.5 0 1 .59 1.85 1.43 2.25-.84.4-1.43 1.25-1.43 2.25z"/>
+                </svg>
+            </div>
+            <p>¡Gracias por acompañarnos en este momento tan especial!</p>
+        </footer>
+    </div>
+
+    <!-- Firebase SDK (CDN) -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+    
+    <!-- Configuración de Firebase -->
+    <script src="firebase-config.js"></script>
+    
+    <!-- Script principal -->
+    <script src="script.js"></script>
+</body>
+</html>
