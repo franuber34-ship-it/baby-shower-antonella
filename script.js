@@ -302,7 +302,7 @@ document.getElementById('rsvpForm').addEventListener('submit', function(e) {
             }
         } catch (e) {}
 
-        // Mostrar un overlay centrado (en lugar de mensaje debajo del formulario)
+        // Mostrar un overlay minimal y sólido
         const overlay = document.createElement('div');
         overlay.id = 'confirmationOverlay';
         overlay.style.position = 'fixed';
@@ -313,21 +313,25 @@ document.getElementById('rsvpForm').addEventListener('submit', function(e) {
         overlay.style.display = 'flex';
         overlay.style.alignItems = 'center';
         overlay.style.justifyContent = 'center';
-        overlay.style.background = 'rgba(0,0,0,0.25)';
+        overlay.style.background = 'rgba(0,0,0,0.22)';
         overlay.style.zIndex = '9999';
 
+        // Minimal solid card: colored background, white icon and text, compact
         overlay.innerHTML = `
-            <div style="background: white; padding: 22px 26px; border-radius: 12px; max-width: 480px; width: 90%; box-shadow: 0 10px 30px rgba(0,0,0,0.15); text-align: center;">
-                <div style="font-size: 2.2rem; color: #ff69b4;">✅</div>
-                <h3 style="margin: 8px 0 6px; color: #333;">¡Gracias, ${nombre}!</h3>
-                <p style="color: #555; margin: 6px 0 12px;">Hemos recibido tu confirmación. Por favor envía el mensaje en WhatsApp para completar tu registro.</p>
-                <p style="color: #ff9ed8; margin: 0; font-style: italic;">Volvemos a la invitación en breve...</p>
+            <div style="background: #ff69b4; color: #fff; padding: 18px 22px; border-radius: 14px; min-width: 260px; max-width: 340px; text-align: center; box-shadow: 0 8px 24px rgba(0,0,0,0.18);">
+                <div style="width:48px;height:48px;margin:0 auto 8px;border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 6L9 17l-5-5" stroke="#ff69b4" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div style="font-weight:700;font-size:1rem;margin-bottom:4px;">¡Gracias, ${nombre}!</div>
+                <div style="font-size:0.9rem;opacity:0.95">Confirmado.</div>
             </div>
         `;
 
         document.body.appendChild(overlay);
 
-        // Después de 4 segundos, quitar overlay y volver a la sección de invitación
+        // Después de 3 segundos, quitar overlay y volver a la sección de invitación
         setTimeout(() => {
             try { document.body.removeChild(overlay); } catch (e) {}
             // Volver a la sección de invitación
@@ -336,7 +340,7 @@ document.getElementById('rsvpForm').addEventListener('submit', function(e) {
                 if (invitBtn) showSection('invitacion', invitBtn);
                 else showSection('invitacion');
             }
-        }, 4000);
+        }, 3000);
     }
 
     if (typeof saveConfirmation === 'function') {
