@@ -5,7 +5,7 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #ffeef8 0%, #ffe4f3 50%, #ffd4eb 100%);
     min-height: 100vh;
     padding: 0;
@@ -718,7 +718,8 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(255, 255, 255, 0.75);
+    /* slightly more transparent so background image reads through */
+    background: rgba(255, 255, 255, 0.6);
     border-radius: 15px;
     z-index: 1;
     pointer-events: none;
@@ -726,7 +727,42 @@ body {
 
 .invitation-message > * {
     position: relative;
-    z-index: 2;
+    z-index: 3;
+}
+
+/* Invitation typography improvements */
+.invitation-icon {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 18px;
+    display: block;
+    position: relative;
+    z-index: 4; /* ensure heart sits above overlay and image */
+}
+
+.invitation-message h3 {
+    color: #ff4da6;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.6rem;
+    margin-bottom: 12px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+}
+
+.invitation-text {
+    color: #444;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.9;
+    margin-bottom: 14px;
+    font-weight: 300;
+}
+
+.invitation-text.highlight {
+    color: #ff4da6;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 1.05rem;
 }
 
 @keyframes contentFadeIn {
