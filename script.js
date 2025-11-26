@@ -82,30 +82,34 @@ function updateAttendeeCounter() {
 }
 
 // Función para cambiar entre secciones
-function showSection(sectionId) {
+function showSection(sectionId, btnElem) {
     // Ocultar todas las secciones
     const sections = document.querySelectorAll('.section');
     sections.forEach(section => {
         section.classList.remove('active');
     });
-    
+
     // Remover clase active de todos los botones
     const buttons = document.querySelectorAll('.nav-btn');
     buttons.forEach(button => {
         button.classList.remove('active');
     });
-    
-    // Mostrar la sección seleccionada
-    document.getElementById(sectionId).classList.add('active');
-    
-    // Activar el botón correspondiente si el evento viene de un botón
-    if (event && event.target) {
-        const btn = event.target.closest('.nav-btn');
-        if (btn) {
-            btn.classList.add('active');
-        }
+
+    // Mostrar la sección seleccionada (si existe)
+    const section = document.getElementById(sectionId);
+    if (section) {
+        section.classList.add('active');
     }
-    
+
+    // Activar el botón pasado desde el onclick o buscar uno que coincida
+    if (btnElem) {
+        btnElem.classList.add('active');
+    } else {
+        // Fallback: buscar botón cuya llamada inline contiene el id (por compatibilidad)
+        const fallbackBtn = document.querySelector(`.nav-btn[onclick*="'${sectionId}'"]`);
+        if (fallbackBtn) fallbackBtn.classList.add('active');
+    }
+
     // Si es la sección de confirmar, actualizar los regalos seleccionados
     if (sectionId === 'confirmar') {
         updateSelectedGiftsDisplay();
@@ -200,74 +204,68 @@ function openWaze() {
 // Manejo del formulario de confirmación
 document.getElementById('rsvpForm').addEventListener('submit', function(e) {
     e.preventDefault();
-    
+
     // Obtener los datos del formulario
-    const nombre = document.getElementById('nombre').value;
-    const telefono = document.getElementById('telefono').value;
-    const asistentes = document.getElementById('asistentes').value;
-    const mensaje = document.getElementById('mensaje').value;
-        // Ya no pedimos número de asistentes: asumimos 1 por confirmación
-        const asistentesCount = 1;
-    // Guardar confirmación en Firebase
+    const nombre = (document.getElementById('nombre') || {}).value?.trim() || '';
+    const telefono = (document.getElementById('telefono') || {}).value?.trim() || '';
+    const mensaje = (document.getElementById('mensaje') || {}).value?.trim() || '';
+
+    // Ya no pedimos número de asistentes: asumimos 1 por confirmación
+    const asistentesCount = 1;
+
+    // Validación mínima
+    if (!nombre || !telefono) {
+        const confirmationDiv = document.getElementById('confirmationMessage');
+        confirmationDiv.innerHTML = '<strong>Por favor completa los campos obligatorios.</strong>';
+        confirmationDiv.classList.add('show');
+        setTimeout(() => confirmationDiv.classList.remove('show'), 4000);
+        return;
+    }
+
+    const confirmationData = {
+        nombre: nombre,
+        telefono: telefono,
+        asistentes: asistentesCount,
+        mensaje: mensaje,
+        timestamp: new Date().toISOString()
+    };
+
+    // Guardar confirmación en Firebase si está disponible
     if (typeof saveConfirmation === 'function') {
-        const confirmationData = {
-            nombre: nombre,
-            telefono: telefono,
-            asistentes: parseInt(asistentes),
-            mensaje: mensaje,
-                asistentes: asistentesCount,
-            timestamp: new Date().toISOString()
-        };
         saveConfirmation(confirmationData);
     } else {
         // Fallback local si Firebase no está disponible
-            // When using Firebase, we rely on realtime sync (syncAttendeeCount)
-        totalAttendees += parseInt(asistentes);
+        totalAttendees += asistentesCount;
         updateAttendeeCounter();
-            totalAttendees += asistentesCount;
-    
+    }
+
     // Crear el mensaje detallado de WhatsApp
-    let whatsappMessage = `
-*CONFIRMACIÓN BABY SHOWER*
-━━━━━━━━━━━━━━━━━━━━━
+    let whatsappMessage = `*CONFIRMACIÓN BABY SHOWER*\n━━━━━━━━━━━━━━━━━━━━━\n\n*Nombre:* ${nombre}\n*Teléfono:* ${telefono}\n*Papás:* Kelvin & Cristel\n*Fecha:* Viernes, 12 de Diciembre 2025\n*Hora:* 7:30 PM\n*Lugar:* Urb. La Planicie, Naranjal Mz "G" lote 7, San Martín de Porres\n`;
 
-*Nombre:* ${nombre}
-*Teléfono:* ${telefono}
-*Número de asistentes:* ${asistentes}
-
-     *Número de asistentes:* ${asistentesCount}
-*Papás:* Kelvin & Cristel
-*Fecha:* Viernes, 12 de Diciembre 2025
-*Hora:* 7:30 PM
-*Lugar:* Urb. La Planicie, Naranjal Mz "G" lote 7, San Martín de Porres
-`;
-
-    // Agregar regalos seleccionados si hay
+    // Agregar regalos seleccionados SOLO si hay
     if (selectedGifts.length > 0) {
         whatsappMessage += `\n*Regalos que llevaré:*\n`;
         selectedGifts.forEach((gift, index) => {
             whatsappMessage += `   ${index + 1}. ${gift}\n`;
         });
-    } else {
-        whatsappMessage += `\n*Regalos:* No he seleccionado ningún regalo aún\n`;
     }
-            whatsappMessage += `\n*Regalos:* No he seleccionado ningún regalo aún\n`;
+
     // Agregar mensaje personalizado si existe
-    if (mensaje.trim()) {
+    if (mensaje) {
         whatsappMessage += `\n*Mensaje para los papás:*\n"${mensaje}"\n`;
     }
-    
+
     whatsappMessage += `\n━━━━━━━━━━━━━━━━━━━━━\n¡Confirmo mi asistencia!\n¡Nos vemos pronto!`;
-    
+
     // Número de WhatsApp de la mamá (Cristel)
     const phoneNumber = '51980000493';
-    
+
     // Crear URL de WhatsApp
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`;
-    
+
     // Abrir WhatsApp
     window.open(whatsappUrl, '_blank');
-    
+
     // Mostrar mensaje de confirmación en la página
     const confirmationDiv = document.getElementById('confirmationMessage');
     confirmationDiv.innerHTML = `
@@ -276,12 +274,7 @@ document.getElementById('rsvpForm').addEventListener('submit', function(e) {
         Por favor envía el mensaje para completar tu confirmación.
     `;
     confirmationDiv.classList.add('show');
-    
-    // Incrementar el contador de asistentes
-    totalAttendees += parseInt(asistentes);
-    updateAttendeeCounter();
-        // Si no hay Firebase, ya incrementamos arriba en fallback; si hay Firebase,
-        // la función `syncAttendeeCount` actualizará el contador en tiempo real.
+
     // Ocultar el mensaje después de 10 segundos
     setTimeout(() => {
         confirmationDiv.classList.remove('show');
