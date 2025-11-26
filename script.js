@@ -222,6 +222,29 @@ document.getElementById('rsvpForm').addEventListener('submit', function(e) {
         return;
     }
 
+    // Evitar reenvío desde el mismo dispositivo si ya confirmó (guardado en localStorage)
+    try {
+        const already = telefono && localStorage.getItem('confirmed_' + telefono);
+        if (already) {
+            // Mostrar overlay informativo breve
+            const alreadyOverlay = document.createElement('div');
+            alreadyOverlay.style.position = 'fixed';
+            alreadyOverlay.style.left = '0';
+            alreadyOverlay.style.top = '0';
+            alreadyOverlay.style.width = '100%';
+            alreadyOverlay.style.height = '100%';
+            alreadyOverlay.style.display = 'flex';
+            alreadyOverlay.style.alignItems = 'center';
+            alreadyOverlay.style.justifyContent = 'center';
+            alreadyOverlay.style.background = 'rgba(0,0,0,0.18)';
+            alreadyOverlay.style.zIndex = '9999';
+            alreadyOverlay.innerHTML = `<div style="background:#fff;padding:16px 20px;border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,0.12);text-align:center;color:#333;">Ya has confirmado tu asistencia con este número.<br>Si fue un error, contacta con los organizadores.</div>`;
+            document.body.appendChild(alreadyOverlay);
+            setTimeout(() => { try { document.body.removeChild(alreadyOverlay); } catch (e) {} }, 3000);
+            return;
+        }
+    } catch (e) {}
+
     const confirmationData = {
         nombre: nombre,
         telefono: telefono,
@@ -267,22 +290,60 @@ document.getElementById('rsvpForm').addEventListener('submit', function(e) {
     // Abrir WhatsApp
     window.open(whatsappUrl, '_blank');
 
-    // Mostrar mensaje de confirmación en la página
-    const confirmationDiv = document.getElementById('confirmationMessage');
-    confirmationDiv.innerHTML = `
-        <div style="text-align: center;">
-            <strong style="font-size: 1.2em; color: #ff69b4;">✅ ¡Confirmación enviada!</strong><br><br>
-            <p style="font-size: 1.05em; color: #333; margin: 10px 0;">Muchas gracias por confirmar tu asistencia, <strong>${nombre}</strong>.</p>
-            <p style="font-size: 0.95em; color: #666;">Se ha abierto WhatsApp con tu confirmación.<br>Por favor envía el mensaje para completar tu registro.</p><br>
-            <p style="font-size: 0.9em; color: #ff9ed8; font-style: italic;">¡Te esperamos el 12 de Diciembre! 🎉</p>
+    // Evitar reenvíos: marcar en localStorage que este teléfono ya confirmó
+    try {
+        if (telefono) {
+            localStorage.setItem('confirmed_' + telefono, new Date().toISOString());
+        }
+    } catch (e) {
+        // ignore localStorage errors (private mode, etc.)
+    }
+
+    // Deshabilitar botón de enviar para evitar reenvío accidental
+    try {
+        const submitBtn = e.target.querySelector('button[type="submit"]');
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.classList.add('disabled');
+            submitBtn.textContent = 'Confirmado';
+        }
+    } catch (e) {}
+
+    // Mostrar un overlay centrado (en lugar de mensaje debajo del formulario)
+    const overlay = document.createElement('div');
+    overlay.id = 'confirmationOverlay';
+    overlay.style.position = 'fixed';
+    overlay.style.left = '0';
+    overlay.style.top = '0';
+    overlay.style.width = '100%';
+    overlay.style.height = '100%';
+    overlay.style.display = 'flex';
+    overlay.style.alignItems = 'center';
+    overlay.style.justifyContent = 'center';
+    overlay.style.background = 'rgba(0,0,0,0.25)';
+    overlay.style.zIndex = '9999';
+
+    overlay.innerHTML = `
+        <div style="background: white; padding: 22px 26px; border-radius: 12px; max-width: 480px; width: 90%; box-shadow: 0 10px 30px rgba(0,0,0,0.15); text-align: center;">
+            <div style="font-size: 2.2rem; color: #ff69b4;">✅</div>
+            <h3 style="margin: 8px 0 6px; color: #333;">¡Gracias, ${nombre}!</h3>
+            <p style="color: #555; margin: 6px 0 12px;">Hemos recibido tu confirmación. Por favor envía el mensaje en WhatsApp para completar tu registro.</p>
+            <p style="color: #ff9ed8; margin: 0; font-style: italic;">Volvemos a la invitación en breve...</p>
         </div>
     `;
-    confirmationDiv.classList.add('show');
 
-    // Ocultar el mensaje después de 10 segundos
+    document.body.appendChild(overlay);
+
+    // Después de 4 segundos, quitar overlay y volver a la sección de invitación
     setTimeout(() => {
-        confirmationDiv.classList.remove('show');
-    }, 10000);
+        try { document.body.removeChild(overlay); } catch (e) {}
+        // Volver a la sección de invitación
+        const invitBtn = document.querySelector(`.nav-btn[onclick*="invitacion"]`);
+        if (typeof showSection === 'function') {
+            if (invitBtn) showSection('invitacion', invitBtn);
+            else showSection('invitacion');
+        }
+    }, 4000);
 });
 
 // Animación inicial
