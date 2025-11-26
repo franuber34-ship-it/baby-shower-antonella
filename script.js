@@ -206,7 +206,8 @@ document.getElementById('rsvpForm').addEventListener('submit', function(e) {
     const telefono = document.getElementById('telefono').value;
     const asistentes = document.getElementById('asistentes').value;
     const mensaje = document.getElementById('mensaje').value;
-    
+        // Ya no pedimos número de asistentes: asumimos 1 por confirmación
+        const asistentesCount = 1;
     // Guardar confirmación en Firebase
     if (typeof saveConfirmation === 'function') {
         const confirmationData = {
@@ -214,15 +215,16 @@ document.getElementById('rsvpForm').addEventListener('submit', function(e) {
             telefono: telefono,
             asistentes: parseInt(asistentes),
             mensaje: mensaje,
-            regalos: selectedGifts,
+                asistentes: asistentesCount,
             timestamp: new Date().toISOString()
         };
         saveConfirmation(confirmationData);
     } else {
         // Fallback local si Firebase no está disponible
+            // When using Firebase, we rely on realtime sync (syncAttendeeCount)
         totalAttendees += parseInt(asistentes);
         updateAttendeeCounter();
-    }
+            totalAttendees += asistentesCount;
     
     // Crear el mensaje detallado de WhatsApp
     let whatsappMessage = `
@@ -233,7 +235,7 @@ document.getElementById('rsvpForm').addEventListener('submit', function(e) {
 *Teléfono:* ${telefono}
 *Número de asistentes:* ${asistentes}
 
-*Evento:* Baby Shower - Antonella
+     *Número de asistentes:* ${asistentesCount}
 *Papás:* Kelvin & Cristel
 *Fecha:* Viernes, 12 de Diciembre 2025
 *Hora:* 7:30 PM
@@ -249,7 +251,7 @@ document.getElementById('rsvpForm').addEventListener('submit', function(e) {
     } else {
         whatsappMessage += `\n*Regalos:* No he seleccionado ningún regalo aún\n`;
     }
-    
+            whatsappMessage += `\n*Regalos:* No he seleccionado ningún regalo aún\n`;
     // Agregar mensaje personalizado si existe
     if (mensaje.trim()) {
         whatsappMessage += `\n*Mensaje para los papás:*\n"${mensaje}"\n`;
@@ -278,7 +280,8 @@ document.getElementById('rsvpForm').addEventListener('submit', function(e) {
     // Incrementar el contador de asistentes
     totalAttendees += parseInt(asistentes);
     updateAttendeeCounter();
-    
+        // Si no hay Firebase, ya incrementamos arriba en fallback; si hay Firebase,
+        // la función `syncAttendeeCount` actualizará el contador en tiempo real.
     // Ocultar el mensaje después de 10 segundos
     setTimeout(() => {
         confirmationDiv.classList.remove('show');
