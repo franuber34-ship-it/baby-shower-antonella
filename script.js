@@ -254,96 +254,124 @@ document.getElementById('rsvpForm').addEventListener('submit', function(e) {
         timestamp: new Date().toISOString()
     };
 
-    // Guardar confirmación en Firebase si está disponible
+    // Guardar confirmación en Firebase si está disponible (verificando duplicados por teléfono)
+    function proceedAfterSave() {
+        // Crear el mensaje detallado de WhatsApp
+        let whatsappMessage = `*CONFIRMACIÓN BABY SHOWER*\n━━━━━━━━━━━━━━━━━━━━━\n\n*Nombre:* ${nombre}\n*Teléfono:* ${telefono}\n*Papás:* Kelvin & Cristel\n*Fecha:* Viernes, 12 de Diciembre 2025\n*Hora:* 7:30 PM\n*Lugar:* Urb. La Planicie, Naranjal Mz "G" lote 7, San Martín de Porres\n`;
+
+        // Agregar regalos seleccionados SOLO si hay
+        if (selectedGifts.length > 0) {
+            whatsappMessage += `\n*Regalos que llevaré:*\n`;
+            selectedGifts.forEach((gift, index) => {
+                whatsappMessage += `   ${index + 1}. ${gift}\n`;
+            });
+        }
+
+        // Agregar mensaje personalizado si existe
+        if (mensaje) {
+            whatsappMessage += `\n*Mensaje para los papás:*\n"${mensaje}"\n`;
+        }
+
+        whatsappMessage += `\n━━━━━━━━━━━━━━━━━━━━━\n¡Confirmo mi asistencia!\n¡Nos vemos pronto!`;
+
+        // Número de WhatsApp de la mamá (Cristel)
+        const phoneNumber = '51980000493';
+
+        // Crear URL de WhatsApp
+        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+
+        // Abrir WhatsApp
+        window.open(whatsappUrl, '_blank');
+
+        // Evitar reenvíos: marcar en localStorage que este teléfono ya confirmó
+        try {
+            if (telefono) {
+                localStorage.setItem('confirmed_' + telefono, new Date().toISOString());
+            }
+        } catch (e) {
+            // ignore localStorage errors (private mode, etc.)
+        }
+
+        // Deshabilitar botón de enviar para evitar reenvío accidental
+        try {
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.classList.add('disabled');
+                submitBtn.textContent = 'Confirmado';
+            }
+        } catch (e) {}
+
+        // Mostrar un overlay centrado (en lugar de mensaje debajo del formulario)
+        const overlay = document.createElement('div');
+        overlay.id = 'confirmationOverlay';
+        overlay.style.position = 'fixed';
+        overlay.style.left = '0';
+        overlay.style.top = '0';
+        overlay.style.width = '100%';
+        overlay.style.height = '100%';
+        overlay.style.display = 'flex';
+        overlay.style.alignItems = 'center';
+        overlay.style.justifyContent = 'center';
+        overlay.style.background = 'rgba(0,0,0,0.25)';
+        overlay.style.zIndex = '9999';
+
+        overlay.innerHTML = `
+            <div style="background: white; padding: 22px 26px; border-radius: 12px; max-width: 480px; width: 90%; box-shadow: 0 10px 30px rgba(0,0,0,0.15); text-align: center;">
+                <div style="font-size: 2.2rem; color: #ff69b4;">✅</div>
+                <h3 style="margin: 8px 0 6px; color: #333;">¡Gracias, ${nombre}!</h3>
+                <p style="color: #555; margin: 6px 0 12px;">Hemos recibido tu confirmación. Por favor envía el mensaje en WhatsApp para completar tu registro.</p>
+                <p style="color: #ff9ed8; margin: 0; font-style: italic;">Volvemos a la invitación en breve...</p>
+            </div>
+        `;
+
+        document.body.appendChild(overlay);
+
+        // Después de 4 segundos, quitar overlay y volver a la sección de invitación
+        setTimeout(() => {
+            try { document.body.removeChild(overlay); } catch (e) {}
+            // Volver a la sección de invitación
+            const invitBtn = document.querySelector(`.nav-btn[onclick*="invitacion"]`);
+            if (typeof showSection === 'function') {
+                if (invitBtn) showSection('invitacion', invitBtn);
+                else showSection('invitacion');
+            }
+        }, 4000);
+    }
+
     if (typeof saveConfirmation === 'function') {
-        saveConfirmation(confirmationData);
+        // Comprobar duplicados en Firebase por telefono antes de push
+        saveConfirmation(confirmationData).then(result => {
+            if (result && result.already) {
+                // Mostrar overlay indicando que ya hay confirmación en servidor
+                const dup = document.createElement('div');
+                dup.style.position = 'fixed';
+                dup.style.left = '0';
+                dup.style.top = '0';
+                dup.style.width = '100%';
+                dup.style.height = '100%';
+                dup.style.display = 'flex';
+                dup.style.alignItems = 'center';
+                dup.style.justifyContent = 'center';
+                dup.style.background = 'rgba(0,0,0,0.18)';
+                dup.style.zIndex = '9999';
+                dup.innerHTML = `<div style="background:#fff;padding:18px 20px;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,0.12);text-align:center;color:#333;">Ya existe una confirmación registrada con este número.<br>Si fue un error, contacta con los organizadores.</div>`;
+                document.body.appendChild(dup);
+                setTimeout(() => { try { document.body.removeChild(dup); } catch (e) {} }, 3500);
+            } else {
+                proceedAfterSave();
+            }
+        }).catch(err => {
+            console.error('Error al guardar confirmación en Firebase:', err);
+            // En caso de error, continuar con el flujo local y abrir WhatsApp
+            proceedAfterSave();
+        });
     } else {
         // Fallback local si Firebase no está disponible
         totalAttendees += asistentesCount;
         updateAttendeeCounter();
+        proceedAfterSave();
     }
-
-    // Crear el mensaje detallado de WhatsApp
-    let whatsappMessage = `*CONFIRMACIÓN BABY SHOWER*\n━━━━━━━━━━━━━━━━━━━━━\n\n*Nombre:* ${nombre}\n*Teléfono:* ${telefono}\n*Papás:* Kelvin & Cristel\n*Fecha:* Viernes, 12 de Diciembre 2025\n*Hora:* 7:30 PM\n*Lugar:* Urb. La Planicie, Naranjal Mz "G" lote 7, San Martín de Porres\n`;
-
-    // Agregar regalos seleccionados SOLO si hay
-    if (selectedGifts.length > 0) {
-        whatsappMessage += `\n*Regalos que llevaré:*\n`;
-        selectedGifts.forEach((gift, index) => {
-            whatsappMessage += `   ${index + 1}. ${gift}\n`;
-        });
-    }
-
-    // Agregar mensaje personalizado si existe
-    if (mensaje) {
-        whatsappMessage += `\n*Mensaje para los papás:*\n"${mensaje}"\n`;
-    }
-
-    whatsappMessage += `\n━━━━━━━━━━━━━━━━━━━━━\n¡Confirmo mi asistencia!\n¡Nos vemos pronto!`;
-
-    // Número de WhatsApp de la mamá (Cristel)
-    const phoneNumber = '51980000493';
-
-    // Crear URL de WhatsApp
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`;
-
-    // Abrir WhatsApp
-    window.open(whatsappUrl, '_blank');
-
-    // Evitar reenvíos: marcar en localStorage que este teléfono ya confirmó
-    try {
-        if (telefono) {
-            localStorage.setItem('confirmed_' + telefono, new Date().toISOString());
-        }
-    } catch (e) {
-        // ignore localStorage errors (private mode, etc.)
-    }
-
-    // Deshabilitar botón de enviar para evitar reenvío accidental
-    try {
-        const submitBtn = e.target.querySelector('button[type="submit"]');
-        if (submitBtn) {
-            submitBtn.disabled = true;
-            submitBtn.classList.add('disabled');
-            submitBtn.textContent = 'Confirmado';
-        }
-    } catch (e) {}
-
-    // Mostrar un overlay centrado (en lugar de mensaje debajo del formulario)
-    const overlay = document.createElement('div');
-    overlay.id = 'confirmationOverlay';
-    overlay.style.position = 'fixed';
-    overlay.style.left = '0';
-    overlay.style.top = '0';
-    overlay.style.width = '100%';
-    overlay.style.height = '100%';
-    overlay.style.display = 'flex';
-    overlay.style.alignItems = 'center';
-    overlay.style.justifyContent = 'center';
-    overlay.style.background = 'rgba(0,0,0,0.25)';
-    overlay.style.zIndex = '9999';
-
-    overlay.innerHTML = `
-        <div style="background: white; padding: 22px 26px; border-radius: 12px; max-width: 480px; width: 90%; box-shadow: 0 10px 30px rgba(0,0,0,0.15); text-align: center;">
-            <div style="font-size: 2.2rem; color: #ff69b4;">✅</div>
-            <h3 style="margin: 8px 0 6px; color: #333;">¡Gracias, ${nombre}!</h3>
-            <p style="color: #555; margin: 6px 0 12px;">Hemos recibido tu confirmación. Por favor envía el mensaje en WhatsApp para completar tu registro.</p>
-            <p style="color: #ff9ed8; margin: 0; font-style: italic;">Volvemos a la invitación en breve...</p>
-        </div>
-    `;
-
-    document.body.appendChild(overlay);
-
-    // Después de 4 segundos, quitar overlay y volver a la sección de invitación
-    setTimeout(() => {
-        try { document.body.removeChild(overlay); } catch (e) {}
-        // Volver a la sección de invitación
-        const invitBtn = document.querySelector(`.nav-btn[onclick*="invitacion"]`);
-        if (typeof showSection === 'function') {
-            if (invitBtn) showSection('invitacion', invitBtn);
-            else showSection('invitacion');
-        }
-    }, 4000);
 });
 
 // Animación inicial

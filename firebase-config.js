@@ -47,20 +47,39 @@ function decrementGiftCount(giftName) {
 
 // Función para guardar confirmación
 function saveConfirmation(data) {
-    const newConfirmationRef = confirmationsRef.push();
-    // Solo guardar propiedades que no sean undefined
+    // Si no hay teléfono, simplemente guardar (no podemos deduplicar)
+    const telefono = data.telefono || '';
+
+    // Construir objeto de confirmación seguro
     const confirmationObj = {
         nombre: data.nombre || '',
-        telefono: data.telefono || '',
+        telefono: telefono,
         asistentes: data.asistentes || 1,
         mensaje: data.mensaje || '',
         timestamp: firebase.database.ServerValue.TIMESTAMP
     };
-    // Agregar regalos solo si está presente y no es undefined
     if (data.regalos !== undefined && data.regalos !== null) {
         confirmationObj.regalos = data.regalos;
     }
-    return newConfirmationRef.set(confirmationObj);
+
+    if (!telefono) {
+        // Sin teléfono, no podemos comprobar duplicados: simplemente guardar
+        const newConfirmationRef = confirmationsRef.push();
+        return newConfirmationRef.set(confirmationObj).then(() => ({ already: false, key: newConfirmationRef.key }));
+    }
+
+    // Comprobar si ya existe una confirmación con este teléfono
+    return confirmationsRef.orderByChild('telefono').equalTo(telefono).once('value').then((snapshot) => {
+        if (snapshot.exists()) {
+            // Devuelve que ya existe (no sobrescribimos)
+            const val = snapshot.val();
+            const existingKey = Object.keys(val)[0];
+            return { already: true, key: existingKey };
+        }
+        // No existe: crear nueva confirmación
+        const newConfirmationRef = confirmationsRef.push();
+        return newConfirmationRef.set(confirmationObj).then(() => ({ already: false, key: newConfirmationRef.key }));
+    });
 }
 
 // Función para obtener total de asistentes
