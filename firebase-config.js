@@ -48,14 +48,19 @@ function decrementGiftCount(giftName) {
 // Función para guardar confirmación
 function saveConfirmation(data) {
     const newConfirmationRef = confirmationsRef.push();
-    return newConfirmationRef.set({
-        nombre: data.nombre,
-        telefono: data.telefono,
-        asistentes: data.asistentes,
-        mensaje: data.mensaje,
-        regalos: data.regalos,
+    // Solo guardar propiedades que no sean undefined
+    const confirmationObj = {
+        nombre: data.nombre || '',
+        telefono: data.telefono || '',
+        asistentes: data.asistentes || 1,
+        mensaje: data.mensaje || '',
         timestamp: firebase.database.ServerValue.TIMESTAMP
-    });
+    };
+    // Agregar regalos solo si está presente y no es undefined
+    if (data.regalos !== undefined && data.regalos !== null) {
+        confirmationObj.regalos = data.regalos;
+    }
+    return newConfirmationRef.set(confirmationObj);
 }
 
 // Función para obtener total de asistentes

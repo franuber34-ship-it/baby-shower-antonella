@@ -227,6 +227,7 @@ document.getElementById('rsvpForm').addEventListener('submit', function(e) {
         telefono: telefono,
         asistentes: asistentesCount,
         mensaje: mensaje,
+        regalos: selectedGifts.length > 0 ? selectedGifts : [],
         timestamp: new Date().toISOString()
     };
 
