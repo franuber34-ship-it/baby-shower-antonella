@@ -270,9 +270,12 @@ document.getElementById('rsvpForm').addEventListener('submit', function(e) {
     // Mostrar mensaje de confirmación en la página
     const confirmationDiv = document.getElementById('confirmationMessage');
     confirmationDiv.innerHTML = `
-        <strong>✅ ¡Confirmación enviada!</strong><br>
-        Se ha abierto WhatsApp con tu confirmación.<br>
-        Por favor envía el mensaje para completar tu confirmación.
+        <div style="text-align: center;">
+            <strong style="font-size: 1.2em; color: #ff69b4;">✅ ¡Confirmación enviada!</strong><br><br>
+            <p style="font-size: 1.05em; color: #333; margin: 10px 0;">Muchas gracias por confirmar tu asistencia, <strong>${nombre}</strong>.</p>
+            <p style="font-size: 0.95em; color: #666;">Se ha abierto WhatsApp con tu confirmación.<br>Por favor envía el mensaje para completar tu registro.</p><br>
+            <p style="font-size: 0.9em; color: #ff9ed8; font-style: italic;">¡Te esperamos el 12 de Diciembre! 🎉</p>
+        </div>
     `;
     confirmationDiv.classList.add('show');
 
