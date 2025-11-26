@@ -15,17 +15,37 @@ let totalAttendees = 0;
 
 // Simulación de contador de regalos (en producción vendría de una base de datos)
 let giftCounts = {
-    'Regalo sorpresa': 0,
+    // Transportación
+    'Cambiador pegable': 0,
+    'Silla de auto': 0,
+    'Cochecito': 0,
+    'Cuna de viaje': 0,
+    'Sábanas de viaje': 0,
+    'Mochila portabebe': 0,
+    // Higiene y Cuidado
     'Pañales': 0,
     'Toallitas': 0,
-    'Pañalera': 0,
-    'Cobijas': 0,
+    'Crema para sarpullido': 0,
+    'Cubrepañal': 0,
+    // Muebles y Descanso
+    'Sillón de lactancia': 0,
+    'Cuna Moisés': 0,
+    'Mantas de bebes': 0,
+    // Alimentación y Lactancia
+    'Almohada de lactancia': 0,
+    'Sostén de lactancia': 0,
     'Biberones': 0,
-    'Toallas': 0,
-    'Chupones': 0,
-    'Juguetes': 0,
-    'Cuna': 0,
-    'Crema para pañales': 0
+    'Esterilizador de biberón': 0,
+    'Cepillo de biberón': 0,
+    'Extractora': 0,
+    // Ropa
+    'Bodys': 0,
+    'Pijama 1 pieza': 0,
+    'Sueteres': 0,
+    'Pantalones': 0,
+    'Gorros': 0,
+    'Conjuntos': 0,
+    'Baberos': 0
 };
 
 // Actualizar contadores al cargar la página
@@ -89,6 +109,22 @@ function showSection(sectionId) {
     // Si es la sección de confirmar, actualizar los regalos seleccionados
     if (sectionId === 'confirmar') {
         updateSelectedGiftsDisplay();
+    }
+}
+
+// Función para alternar (toggle) categorías de regalos
+function toggleCategory(button) {
+    const giftsGrid = button.nextElementSibling;
+    const arrow = button.querySelector('.toggle-arrow');
+    
+    if (giftsGrid.style.display === 'none') {
+        giftsGrid.style.display = 'grid';
+        arrow.textContent = '▲';
+        button.classList.add('active');
+    } else {
+        giftsGrid.style.display = 'none';
+        arrow.textContent = '▼';
+        button.classList.remove('active');
     }
 }
 
@@ -156,9 +192,9 @@ function updateSelectedGiftsDisplay() {
 
 // Función para abrir Waze
 function openWaze() {
-    // URL de Waze proporcionada
-    const wazeUrl = "https://www.waze.com/live-map/directions?to=ll.-11.968124%2C-77.095377";
-    window.open(wazeUrl, '_blank');
+    // Preferencia: abrir en Google Maps con la ubicación configurada
+    const mapsUrl = "https://www.google.com/maps/dir/?api=1&destination=-11.968124,-77.095377";
+    window.open(mapsUrl, '_blank');
 }
 
 // Manejo del formulario de confirmación

@@ -374,48 +374,122 @@ body {
 }
 
 /* Lista de Regalos */
-.gifts-grid {
+.gifts-category {
+    margin-bottom: 12px;
+}
+
+.category-toggle {
+    width: 100%;
+    background: linear-gradient(135deg, #fff5fb, #ffe9f7);
+    border: 2px solid #ffb3e6;
+    border-radius: 10px;
+    padding: 12px 15px;
     display: flex;
-    flex-direction: column;
+    align-items: center;
     gap: 12px;
-    margin-top: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1em;
+    font-weight: 600;
+    color: #ff69b4;
+    justify-content: space-between;
+}
+
+.category-toggle:hover {
+    background: linear-gradient(135deg, #ffe9f7, #ffd4eb);
+    box-shadow: 0 2px 8px rgba(255, 105, 180, 0.2);
+    transform: translateX(3px);
+}
+
+.category-toggle.active {
+    background: linear-gradient(135deg, #ffd4eb, #ffc5e3);
+    border-color: #ff69b4;
+}
+
+.category-icon {
+    font-size: 1.3em;
+    min-width: 25px;
+    text-align: center;
+}
+
+.category-title {
+    flex: 1;
+    text-align: left;
+}
+
+.toggle-arrow {
+    font-size: 0.8em;
+    color: #ff69b4;
+    transition: transform 0.3s ease;
+}
+
+.gifts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+    margin-top: 0;
+    margin-bottom: 8px;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        max-height: 0;
+    }
+    to {
+        opacity: 1;
+        max-height: 1000px;
+    }
 }
 
 .gift-item {
     background: linear-gradient(135deg, #fff5fb, #ffe9f7);
-    border-radius: 15px;
-    padding: 15px;
+    border-radius: 12px;
+    padding: 12px;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 15px;
+    justify-content: center;
+    gap: 8px;
     transition: all 0.3s ease;
     border: 3px solid transparent;
-    flex-shrink: 0;
+    text-align: center;
+    min-height: 160px;
 }
 
 .gift-item:hover {
-    transform: translateX(5px);
-    box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(255, 105, 180, 0.25);
 }
 
 .gift-item.selected {
     border-color: #ff69b4;
     background: linear-gradient(135deg, #ffe4f3, #ffd4eb);
+    box-shadow: 0 2px 8px rgba(255, 105, 180, 0.3);
 }
 
 .gift-icon {
-    width: 60px;
-    height: 60px;
-    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
 }
 
 .gift-item-content {
-    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     width: 100%;
+}
+
+.gift-item h5 {
+    color: #ff69b4;
+    margin: 0;
+    font-size: 0.85em;
+    text-align: center;
+    width: 100%;
+    line-height: 1.1;
+    font-weight: 600;
 }
 
 .gift-item h4 {
@@ -619,11 +693,40 @@ body {
 
 /* Invitación Section */
 .invitation-message {
-    max-width: 600px;
-    margin: 0 auto;
+    max-width: 100%;
+    width: 90%;
+    margin: 20px auto;
     text-align: center;
-    padding: 20px;
+    padding: 40px 20px;
     animation: contentFadeIn 1s ease-out 0.9s both;
+    position: relative;
+    background-image: url('kk.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 15px;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.invitation-message::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.75);
+    border-radius: 15px;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.invitation-message > * {
+    position: relative;
+    z-index: 2;
 }
 
 @keyframes contentFadeIn {
