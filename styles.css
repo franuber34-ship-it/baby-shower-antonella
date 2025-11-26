@@ -1176,107 +1176,606 @@ body {
 }
 
 /* Responsive */
-@media (max-width: 768px) {
-    .header {
-        padding: 30px 15px;
-        min-height: 180px;
-    }
-    
-    .header-text h1 {
-        font-size: 2em;
-    }
-    
-    .header-text h2 {
-        font-size: 1.5em;
-    }
-    
-    .header-icon {
-        width: 40px;
-        height: 40px;
-    }
-    
-    .event-info {
-        font-size: 0.9em;
-    }
-    
-    .parents-names {
-        font-size: 1em;
-    }
-    
-    .invitation-icon {
-        width: 60px;
-        height: 60px;
-    }
-    
-    .invitation-text {
-        font-size: 1em;
-    }
-    
-    .nav-btn {
-        padding: 12px 20px;
-        font-size: 0.95em;
-    }
-    
-    .gifts-grid {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 15px;
-    }
-    
-    .section {
-        padding: 30px 15px;
-    }
-    
-    .sphere, .pacifier, .footprint, .radar {
-        transform: scale(0.8);
-    }
-    
-    .bubble {
-        transform: scale(0.7);
-    }
-}
 
+/* Mobile: 320px - 480px (pequeños) */
 @media (max-width: 480px) {
     body {
         padding: 0;
+        background: linear-gradient(135deg, #ffeef8 0%, #ffe4f3 50%, #ffd4eb 100%);
     }
     
     .container {
         border-radius: 0;
+        box-shadow: none;
+    }
+    
+    .page-floating-icons {
+        display: none;
     }
     
     .header {
-        padding: 25px 10px;
-        min-height: 160px;
+        padding: 20px 12px;
+        min-height: auto;
     }
     
     .header-content {
         flex-direction: column;
-        gap: 15px;
+        gap: 10px;
     }
     
     .header-icon {
-        width: 35px;
-        height: 35px;
+        width: 30px;
+        height: 30px;
     }
     
     .header-text h1 {
         font-size: 1.8em;
+        margin-bottom: 3px;
     }
     
     .header-text h2 {
         font-size: 1.3em;
+        margin-bottom: 8px;
     }
     
     .event-info {
+        font-size: 0.8em;
         flex-direction: column;
-        gap: 5px;
+        gap: 3px;
     }
     
     .separator {
         display: none;
     }
     
+    .parents-names {
+        font-size: 0.95em;
+        margin-top: 8px;
+    }
+    
+    .nav-buttons {
+        gap: 4px;
+        padding: 8px;
+    }
+    
+    .nav-btn {
+        padding: 8px 12px;
+        font-size: 0.75em;
+        gap: 4px;
+    }
+    
+    .nav-icon {
+        width: 14px;
+        height: 14px;
+    }
+    
+    .section {
+        padding: 12px;
+    }
+    
+    .section h3 {
+        font-size: 1.3em;
+        margin-bottom: 4px;
+    }
+    
+    .section-subtitle {
+        font-size: 0.85em;
+        margin-bottom: 12px;
+    }
+    
+    /* Invitation mobile */
+    .invitation-message {
+        width: 95%;
+        padding: 20px 12px;
+        min-height: auto;
+        margin: 10px auto;
+        border-radius: 12px;
+    }
+    
+    .invitation-icon {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 12px;
+    }
+    
+    .invitation-message h3 {
+        font-size: 2em;
+        margin-bottom: 10px;
+    }
+    
+    .invitation-text {
+        font-size: 0.95em;
+        line-height: 1.7;
+        margin-bottom: 10px;
+    }
+    
+    /* Minimal counter mobile */
+    .minimal-counter {
+        padding: 8px 12px;
+        font-size: 0.8em;
+        margin-bottom: 12px;
+    }
+    
+    .minimal-counter #attendeeCount {
+        font-size: 1.2em;
+    }
+    
+    /* Gift ideas grid - mobile */
+    .gift-idea-category {
+        margin-bottom: 10px;
+    }
+    
+    .gift-idea-title {
+        font-size: 1.05em;
+        margin-bottom: 8px;
+    }
+    
+    .gift-ideas-grid {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 8px;
+    }
+    
+    .gift-idea-card {
+        padding: 10px;
+        min-height: auto;
+    }
+    
+    .gift-idea-icon {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .gift-idea-card h5 {
+        font-size: 0.8em;
+    }
+    
+    /* Gift list - mobile */
+    .category-toggle {
+        padding: 10px 12px;
+        font-size: 0.95em;
+        border-radius: 8px;
+        gap: 10px;
+    }
+    
     .gifts-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+        gap: 10px;
+        margin-bottom: 6px;
+    }
+    
+    .gift-item {
+        padding: 10px;
+        min-height: 140px;
+        gap: 6px;
+        border-radius: 10px;
+    }
+    
+    .gift-icon {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .gift-item h5 {
+        font-size: 0.8em;
+    }
+    
+    .gift-counter {
+        font-size: 0.75em;
+        padding: 3px 8px;
+    }
+    
+    .select-btn {
+        padding: 6px 12px;
+        font-size: 0.8em;
+        border-radius: 15px;
+    }
+    
+    /* Location - mobile */
+    .address {
+        padding: 12px;
+        margin-bottom: 12px;
+        border-radius: 12px;
+    }
+    
+    .address h4 {
+        font-size: 1.1em;
+        margin-bottom: 10px;
+    }
+    
+    .address p {
+        font-size: 1em;
+    }
+    
+    .map-container {
+        margin-bottom: 12px;
+        height: 250px;
+        border-radius: 12px;
+    }
+    
+    .map-container iframe {
+        height: 250px !important;
+    }
+    
+    .directions-btn {
+        padding: 12px;
+        font-size: 1em;
+        border-radius: 20px;
+    }
+    
+    /* Form - mobile */
+    .rsvp-form {
+        max-width: 100%;
+    }
+    
+    .form-group {
+        margin-bottom: 12px;
+    }
+    
+    .form-group label {
+        font-size: 0.95em;
+        margin-bottom: 6px;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        font-size: 16px; /* Previene zoom en iOS */
+        padding: 10px 12px;
+        border-radius: 10px;
+    }
+    
+    .form-group textarea {
+        min-height: 80px;
+    }
+    
+    .submit-btn {
+        padding: 12px;
+        font-size: 0.95em;
+        border-radius: 20px;
+    }
+    
+    .selected-gifts-display {
+        padding: 12px;
+        margin-bottom: 12px;
+        border-radius: 12px;
+    }
+    
+    .selected-gifts-display h4 {
+        margin-bottom: 8px;
+        font-size: 1em;
+    }
+    
+    .selected-gifts-display p {
+        font-size: 0.9em;
+    }
+    
+    /* Footer - mobile */
+    .footer {
+        padding: 20px 12px;
+    }
+    
+    .footer-decoration {
+        gap: 5px;
+    }
+    
+    .footer-decoration svg {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .footer p {
+        font-size: 0.9em;
+    }
+}
+
+/* Tablet: 481px - 768px */
+@media (min-width: 481px) and (max-width: 768px) {
+    .header {
+        padding: 30px 20px;
+        min-height: 190px;
+    }
+    
+    .header-text h1 {
+        font-size: 2.2em;
+    }
+    
+    .header-text h2 {
+        font-size: 1.6em;
+    }
+    
+    .header-icon {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .event-info {
+        font-size: 0.95em;
+    }
+    
+    .parents-names {
+        font-size: 1.05em;
+    }
+    
+    .nav-buttons {
+        gap: 6px;
+        padding: 10px;
+    }
+    
+    .nav-btn {
+        padding: 10px 16px;
+        font-size: 0.85em;
+    }
+    
+    .section {
+        padding: 20px;
+    }
+    
+    .section h3 {
+        font-size: 1.4em;
+    }
+    
+    .invitation-message {
+        width: 92%;
+        padding: 30px 18px;
+        margin: 15px auto;
+    }
+    
+    .invitation-icon {
+        width: 65px;
+        height: 65px;
+    }
+    
+    .invitation-message h3 {
+        font-size: 2.3em;
+    }
+    
+    .invitation-text {
+        font-size: 1.02em;
+    }
+    
+    .gift-ideas-grid {
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        gap: 12px;
+    }
+    
+    .gift-idea-card {
+        padding: 12px;
+    }
+    
+    .gift-idea-icon {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .gifts-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 12px;
+    }
+    
+    .gift-item {
+        padding: 12px;
+        min-height: 150px;
+    }
+    
+    .gift-icon {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .address {
+        padding: 18px;
+        margin-bottom: 18px;
+    }
+    
+    .address h4 {
+        font-size: 1.2em;
+    }
+    
+    .map-container {
+        margin-bottom: 18px;
+        height: 300px;
+    }
+    
+    .map-container iframe {
+        height: 300px !important;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 11px 14px;
+        font-size: 15px;
+    }
+    
+    .form-group textarea {
+        min-height: 90px;
+    }
+}
+
+/* Desktop: 769px+ */
+@media (min-width: 769px) {
+    .container {
+        max-width: 900px;
+    }
+    
+    .header {
+        padding: 45px 30px;
+        min-height: 220px;
+    }
+    
+    .header-text h1 {
+        font-size: 2.8em;
+    }
+    
+    .header-text h2 {
+        font-size: 2em;
+    }
+    
+    .header-icon {
+        width: 55px;
+        height: 55px;
+    }
+    
+    .event-info {
+        font-size: 1.05em;
+    }
+    
+    .parents-names {
+        font-size: 1.2em;
+    }
+    
+    .nav-buttons {
+        gap: 10px;
+        padding: 15px;
+    }
+    
+    .nav-btn {
+        padding: 12px 22px;
+        font-size: 1em;
+    }
+    
+    .nav-btn:hover {
+        transform: translateY(-3px);
+    }
+    
+    .section {
+        padding: 25px 30px;
+    }
+    
+    .section h3 {
+        font-size: 1.8em;
+    }
+    
+    .invitation-message {
+        width: 90%;
+        margin: 20px auto;
+        padding: 45px 25px;
+        min-height: 420px;
+    }
+    
+    .invitation-icon {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .invitation-message h3 {
+        font-size: 2.8em;
+    }
+    
+    .invitation-text {
+        font-size: 1.1em;
+        line-height: 1.95;
+    }
+    
+    .gift-idea-category {
+        margin-bottom: 25px;
+    }
+    
+    .gift-ideas-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 15px;
+    }
+    
+    .gift-idea-card {
+        padding: 15px;
+    }
+    
+    .gift-idea-icon {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .gifts-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 15px;
+    }
+    
+    .gift-item {
+        padding: 15px;
+        min-height: 170px;
+    }
+    
+    .gift-icon {
+        width: 55px;
+        height: 55px;
+    }
+    
+    .address {
+        padding: 25px;
+        margin-bottom: 25px;
+    }
+    
+    .address h4 {
+        font-size: 1.4em;
+    }
+    
+    .address p {
+        font-size: 1.15em;
+    }
+    
+    .map-container {
+        margin-bottom: 25px;
+        height: 350px;
+    }
+    
+    .map-container iframe {
+        height: 350px !important;
+    }
+    
+    .directions-btn {
+        padding: 16px;
+        font-size: 1.15em;
+    }
+    
+    .rsvp-form {
+        max-width: 700px;
+    }
+    
+    .form-group {
+        margin-bottom: 22px;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 13px 16px;
+        font-size: 1em;
+    }
+    
+    .form-group textarea {
+        min-height: 110px;
+    }
+    
+    .submit-btn {
+        padding: 14px;
+        font-size: 1.1em;
+    }
+    
+    .footer {
+        padding: 25px;
+    }
+    
+    .footer-decoration svg {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+/* Pantallas muy grandes: 1200px+ */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 950px;
+    }
+    
+    .header-text h1 {
+        font-size: 3em;
+    }
+    
+    .header-text h2 {
+        font-size: 2.2em;
+    }
+    
+    .invitation-message h3 {
+        font-size: 3em;
     }
 }
